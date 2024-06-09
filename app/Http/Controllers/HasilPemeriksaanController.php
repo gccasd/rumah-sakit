@@ -59,7 +59,7 @@ class HasilPemeriksaanController extends Controller
     {
         $pemeriksaan = OrderPemeriksaan::with(['pasien'])->where('id', $id)->get();
         return Inertia::render('HasilLab/HasilLab', [
-            'pemeriksaan1' => $pemeriksaan,
+            'pemeriksaan' => $pemeriksaan,
             'status' => session('status'),
         ]);
     }

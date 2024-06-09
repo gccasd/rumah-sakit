@@ -18,9 +18,17 @@ import TextInput from "@/Components/TextInput";
 import TextInputSelect from "@/Components/TextInputSelect";
 import { Pagination } from "@/Components/Pagination";
 import { debounce, isPageNumber, toDate } from "@/types/helper";
+import Checkbox from "@/Components/Checkbox";
 
 export default function DaftarPasien({ auth, pemeriksaan, page }: PageProps) {
   const { url } = usePage<any>();
+
+  const handleClick = (id: number) => {
+    const key = "validasi" + id;
+    const newValue = localStorage.getItem(key) === "diterima" + id ? "" : "diterima" + id;
+    localStorage.setItem(key, newValue);
+    console.log(localStorage.getItem(key));
+  };
 
   const handleSearchQuery = async (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -46,6 +54,24 @@ export default function DaftarPasien({ auth, pemeriksaan, page }: PageProps) {
   }, 1100);
 
   const [currentPage, setCurrentPage] = useState(1); // Initial page number
+  const [checkedItems, setCheckedItems] = useState<Record<string, boolean>>({});
+
+  const handleCheckboxChange = (id: string) => {
+    setCheckedItems({
+      ...checkedItems,
+      [id]: !checkedItems[id]
+    });
+  };
+
+  useEffect(() => {
+    const newCheckedItems: Record<string, boolean> = {};
+    pemeriksaan.forEach(dataItem => {
+      const key = "validasi" + dataItem.id;
+      newCheckedItems[key] = localStorage.getItem(key) === "diterima" + dataItem.id;
+    });
+    setCheckedItems(newCheckedItems);
+  }, [pemeriksaan]);
+
 
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
@@ -159,12 +185,13 @@ export default function DaftarPasien({ auth, pemeriksaan, page }: PageProps) {
 
                             <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                               <div className="flex flex-wrap flex-col items-center space-y-2">
-                                <button className="bg-green-400 text-black w-26">
-                                  Cek
-                                </button>
-                                <button className="bg-red-400 text-black w-26">
-                                  Print
-                                </button>
+                              <Checkbox
+                                  id={`${dataItem.id+dataItem.no_rm}`}
+                                  onClick={() => handleClick(dataItem.id)}
+                                  onChange={() => handleCheckboxChange(`validasi${dataItem.id}`)}
+                                  checked={checkedItems[`validasi${dataItem.id}`]}
+                                  
+                                />
                               </div>
                             </td>
                           </tr>

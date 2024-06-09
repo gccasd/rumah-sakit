@@ -161,9 +161,9 @@ export default function DaftarPasien({ auth, pemeriksaan, page }: PageProps) {
 
                             <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                               <div className="flex items-center space-x-3.5">
-                                <button className="bg-green-400 text-black w-26">
-                                  Cek
-                                </button>
+                                <Link href={"/hasil-pemeriksaan/"+dataItem.id} className="bg-green-900 text-white text-center  w-26">
+                                  Cetak
+                                </Link>
                               </div>
                             </td>
                           </tr>
