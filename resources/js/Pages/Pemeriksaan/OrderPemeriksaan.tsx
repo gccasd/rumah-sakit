@@ -11,11 +11,12 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import { Head, router, useForm } from "@inertiajs/react";
 import { Transition } from "@headlessui/react";
-import { PageProps, Pasien } from "@/types";
+import { JenisPemeriksaan, PageProps, Pasien } from "@/types";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import NotifSuccess from "@/Components/NotifSuccess";
 import TextInputSelect from "@/Components/TextInputSelect";
 import { debounce } from "@/types/helper";
+import TextArea from "@/Components/TextArea";
 
 export default function OrderPemeriksaan(
   { auth, pasien, jenisPemeriksaan }: PageProps,
@@ -23,11 +24,19 @@ export default function OrderPemeriksaan(
 ) {
   const [dataPasien, setDataPasien] = useState<Pasien>();
   const [isListHidden, setIsListHidden] = useState<boolean>(true);
+  const [inputJenisPemeriksaanItem, setInputJenisPemeriksaanItem] = useState('');
+  
 
   const noRMInput = useRef<HTMLInputElement>(null);
   const dokterPenanggungJawabInput = useRef<HTMLInputElement>(null);
   const jaminanInput = useRef<HTMLInputElement>(null);
   const namaPemeriksaanInput = useRef<HTMLInputElement>(null);
+  const jenisPemeriksaanTextArea = useRef<HTMLTextAreaElement>(null);
+
+
+  useEffect(() => {
+    handleInputChange();
+  }, [jenisPemeriksaan]);
 
   const { data, setData, errors, post, processing, recentlySuccessful } =
     useForm({
@@ -48,6 +57,10 @@ export default function OrderPemeriksaan(
       }
     );
   }, 1100);
+
+  const handleInputChange = () => {
+    const textareaValue = jenisPemeriksaan.map((item, index) => `- ${item.nama_jenis_pemeriksaan}`).join('\n');
+    setInputJenisPemeriksaanItem(textareaValue);  };
 
   const handleSearchQuery = async (e: ChangeEvent<HTMLInputElement>) => {
     setIsListHidden(false);
@@ -234,17 +247,11 @@ export default function OrderPemeriksaan(
                       htmlFor="jenis_pemeriksaan"
                       value="Jenis Pemeriksaan Yang Diinput"
                     />
-                    <ul
-                      id="jenis_pemeriksaan"
-                      className="text-black dark:text-white"
-                    >
-                      {jenisPemeriksaan.map((value) => (
-                        <li key={value.id}>
-                          {" "}
-                          - {value.nama_jenis_pemeriksaan}
-                        </li>
-                      ))}
-                    </ul>
+                      <TextArea    
+                                              className="text-black dark:text-white w-full"                   
+                        id="jenis_pemeriksaan"
+                        ref={jenisPemeriksaanTextArea}
+                        value={inputJenisPemeriksaanItem}/>
                   </div>
                   <div className="m-3">
                     <InputLabel className="text-black" htmlFor="jaminan" value="Jaminan" />

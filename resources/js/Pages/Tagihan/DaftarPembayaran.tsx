@@ -1,14 +1,19 @@
 import AuthenticatedLayout from "../../Layouts/AuthenticatedLayout";
-import { Head,  router, usePage } from "@inertiajs/react";
+import { Head, router, usePage } from "@inertiajs/react";
 import { PageProps } from "@/types";
 import {
   ChangeEvent,
+  MutableRefObject,
+  useEffect,
+  useRef,
   useState,
 } from "react";
 import TextInput from "@/Components/TextInput";
 import TextInputSelect from "@/Components/TextInputSelect";
 import { Pagination } from "@/Components/Pagination";
 import { debounce, isPageNumber, rupiahFormat, toDate } from "@/types/helper";
+import ReactToPrint, { useReactToPrint } from "react-to-print";
+import CetakDaftarPembayaran from "@/Components/Print/CetakDaftarPembayaran";
 
 export default function DaftarPembayaran({
   auth,
@@ -16,6 +21,30 @@ export default function DaftarPembayaran({
   page,
 }: PageProps) {
   const { url } = usePage<any>();
+  const [isPrinting, setIsPrinting] = useState(false);
+  const printRef = useRef<HTMLDivElement>(null);
+  const promiseResolveRef = useRef<(() => void) | null>(null);
+  
+  useEffect(() => {
+    if (isPrinting && promiseResolveRef.current) {
+      promiseResolveRef.current();
+    }
+  }, [isPrinting]);
+
+  const handlePrint = useReactToPrint({
+    content: () => printRef.current,
+    onBeforeGetContent: () => {
+      return new Promise<void>((resolve) => {
+        promiseResolveRef.current = resolve;
+        console.log(resolve)
+        setIsPrinting(true);
+      });
+    },
+    onAfterPrint: () => {
+      promiseResolveRef.current = null;
+      setIsPrinting(false);
+    },
+  });
 
   const handleSearchQuery = async (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -163,9 +192,23 @@ export default function DaftarPembayaran({
                             </td>
                             <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                               <div className="flex items-center space-x-3.5">
-                                <button className="bg-red-400 text-black w-26">
-                                  Print
-                                </button>
+                                {/* Tombol print */}
+                                <button className="bg-red-300 px-5 py-1/2 text-white" onClick={handlePrint}>Print</button>
+                                <div>
+                                  {/* Wrap ComponentToPrint in a div with display: none */}
+                                  <div
+                                    style={{
+                                      display: isPrinting ? "block" : "none",
+                                    }}
+                                    className="absolute top-0 left-0 z-0"
+                                  >
+                                    <CetakDaftarPembayaran
+                                      ref={printRef}
+                                      data={dataItem}
+                                      className={""}
+                                    />
+                                  </div>
+                                </div>
                               </div>
                             </td>
                           </tr>
@@ -174,10 +217,13 @@ export default function DaftarPembayaran({
                   </tbody>
                 </table>
                 <div className="mb-5">
-                <Pagination   totalPage={page}
-  pageNow={currentPage}
-  url={url}
-  onPageChange={handlePageChange}/>                </div>
+                  <Pagination
+                    totalPage={page}
+                    pageNow={currentPage}
+                    url={url}
+                    onPageChange={handlePageChange}
+                  />
+                </div>
               </div>
             </div>
           </div>

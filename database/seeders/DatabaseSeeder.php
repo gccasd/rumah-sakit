@@ -79,7 +79,7 @@ class DatabaseSeeder extends Seeder
             'Parasitologi' => [
                 'Pemeriksaan Malaria',
                 'Analisa Parasit Tinja',
-                'Anslisa parasit protozoa',
+                'Analisa Parasit Protozoa',
             ],
             'Mikrobiologi' => [
                 'BTA/GRAM',

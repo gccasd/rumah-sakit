@@ -31,9 +31,9 @@ interface JenisPemeriksaan {
 
 interface Pemeriksaan {
     id: number;
-    noRm: string;
+    no_rm: string;
     jaminan: string | null;
-    dokter_penanggungJawab: string;
+    dokter_penanggung_jawab: string;
     status_pemeriksaan: string | null;
     total_pembayaran: number | null;
     metode_pembayaran: 'debit' | 'cash' | null;
@@ -55,5 +55,6 @@ export type PageProps<T extends Record<string, unknown> = Record<string, unknown
     pasien: Pasien | Pasien[];
     jenisPemeriksaan: JenisPemeriksaan[];
     pemeriksaan: Pemeriksaan[];
+    pemeriksaan1: Pemeriksaan;
     ziggy: Config & { location: string };
 };

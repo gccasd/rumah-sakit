@@ -377,6 +377,94 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               </SidebarLinkGroup>
               {/* <!-- Menu Item Pemeriksaan --> */}
 
+              {/* <!-- Menu Item Pengambilan Sample --> */}
+              <SidebarLinkGroup
+                activeCondition={
+                  pathname.includes("pengambilan-sample") ||
+                  pathname.includes("cetak-barcode")
+                }
+              >
+                {(handleClick, open) => {
+                  return (
+                    <div>
+                      <Link
+                        href="#"
+                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-cyan-700 dark:hover:bg-meta-4 ${
+                          (pathname.includes("pengambilan-sample") ||
+                            pathname.includes("cetak-barcode")) &&
+                          "bg-cyan-800 dark:bg-meta-4"
+                        }`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          sidebarExpanded
+                            ? handleClick()
+                            : setSidebarExpanded(true);
+                        }}
+                      >
+                        <FontAwesomeIcon icon={faEyeDropper} />
+                        Pengambilan Sampel
+                        <svg
+                          className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current ${
+                            open && "rotate-180"
+                          }`}
+                          width="20"
+                          height="20"
+                          viewBox="0 0 20 20"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M4.41107 6.9107C4.73651 6.58527 5.26414 6.58527 5.58958 6.9107L10.0003 11.3214L14.4111 6.91071C14.7365 6.58527 15.2641 6.58527 15.5896 6.91071C15.915 7.23614 15.915 7.76378 15.5896 8.08922L10.5896 13.0892C10.2641 13.4147 9.73651 13.4147 9.41107 13.0892L4.41107 8.08922C4.08563 7.76378 4.08563 7.23614 4.41107 6.9107Z"
+                            fill=""
+                          />
+                        </svg>
+                      </Link>
+                      {/* <!-- Dropdown Menu Start --> */}
+                      <div
+                        className={`translate transform overflow-hidden ${
+                          !open && "hidden"
+                        }`}
+                      >
+                        <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
+                          <li>
+                            <Link
+                              href="/pengambilan-sample"
+                              className={
+                                url.includes("/pengambilan-sample")
+                                  ? "group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark duration-300 ease-in-out hover:text-white " +
+                                    (url.includes("/pengambilan-sample") &&
+                                      "!text-white font-semibold")
+                                  : "text-neutral-300"
+                              }
+                            >
+                              Pengambilan Sample
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              href="/cetak-barcode"
+                              className={
+                                url.includes("/cetak-barcode")
+                                  ? "group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark duration-300 ease-in-out hover:text-white " +
+                                    (url.includes("/cetak-barcode") &&
+                                      "!text-white font-semibold")
+                                  : "text-neutral-300"
+                              }
+                            >
+                              Cetak Barcode Sample
+                            </Link>
+                          </li>
+                        </ul>
+                      </div>
+                      {/* <!-- Dropdown Menu End --> */}
+                    </div>
+                  );
+                }}
+              </SidebarLinkGroup>
+              {/* <!-- Menu Item Pengambilan Sample --> */}
+
               {/* <!-- Menu Item Hasil Pemeriksaan --> */}
               <SidebarLinkGroup
                 activeCondition={
@@ -559,94 +647,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               </SidebarLinkGroup>
               {/* <!-- Menu Item Tagihan --> */}
 
-              {/* <!-- Menu Item Pengambilan Sample --> */}
-              <SidebarLinkGroup
-                activeCondition={
-                  pathname.includes("pengambilan-sample") ||
-                  pathname.includes("cetak-barcode")
-                }
-              >
-                {(handleClick, open) => {
-                  return (
-                    <div>
-                      <Link
-                        href="#"
-                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-cyan-700 dark:hover:bg-meta-4 ${
-                          (pathname.includes("pengambilan-sample") ||
-                            pathname.includes("cetak-barcode")) &&
-                          "bg-cyan-800 dark:bg-meta-4"
-                        }`}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          sidebarExpanded
-                            ? handleClick()
-                            : setSidebarExpanded(true);
-                        }}
-                      >
-                        <FontAwesomeIcon icon={faEyeDropper} />
-                        Pengambilan Sample
-                        <svg
-                          className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current ${
-                            open && "rotate-180"
-                          }`}
-                          width="20"
-                          height="20"
-                          viewBox="0 0 20 20"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            clipRule="evenodd"
-                            d="M4.41107 6.9107C4.73651 6.58527 5.26414 6.58527 5.58958 6.9107L10.0003 11.3214L14.4111 6.91071C14.7365 6.58527 15.2641 6.58527 15.5896 6.91071C15.915 7.23614 15.915 7.76378 15.5896 8.08922L10.5896 13.0892C10.2641 13.4147 9.73651 13.4147 9.41107 13.0892L4.41107 8.08922C4.08563 7.76378 4.08563 7.23614 4.41107 6.9107Z"
-                            fill=""
-                          />
-                        </svg>
-                      </Link>
-                      {/* <!-- Dropdown Menu Start --> */}
-                      <div
-                        className={`translate transform overflow-hidden ${
-                          !open && "hidden"
-                        }`}
-                      >
-                        <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
-                          <li>
-                            <Link
-                              href="/pengambilan-sample"
-                              className={
-                                url.includes("/pengambilan-sample")
-                                  ? "group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark duration-300 ease-in-out hover:text-white " +
-                                    (url.includes("/pengambilan-sample") &&
-                                      "!text-white font-semibold")
-                                  : "text-neutral-300"
-                              }
-                            >
-                              Pengambilan Sample
-                            </Link>
-                          </li>
-                          <li>
-                            <Link
-                              href="/cetak-barcode"
-                              className={
-                                url.includes("/cetak-barcode")
-                                  ? "group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark duration-300 ease-in-out hover:text-white " +
-                                    (url.includes("/cetak-barcode") &&
-                                      "!text-white font-semibold")
-                                  : "text-neutral-300"
-                              }
-                            >
-                              Cetak Barcode Sample
-                            </Link>
-                          </li>
-                        </ul>
-                      </div>
-                      {/* <!-- Dropdown Menu End --> */}
-                    </div>
-                  );
-                }}
-              </SidebarLinkGroup>
-              {/* <!-- Menu Item Pengambilan Sample --> */}
-
               {/* <!-- Menu Item Laporan --> */}
               <SidebarLinkGroup
                 activeCondition={
@@ -723,7 +723,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                                   : "text-neutral-300"
                               }
                             >
-                              Rawat Jalan
+                              Jumlah Pasien
                             </Link>
                           </li>
                         </ul>

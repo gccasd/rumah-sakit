@@ -12,7 +12,7 @@ const options: ApexOptions = {
     type: 'pie',
   },
   colors: ['#3C50E0', '#6577F3', '#8FD0EF', '#0FADCF'],
-  labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+  labels: ['Tahun 1', 'Tahun 2', 'Tahun 3', 'Tahun 4'],
   legend: {
     show: false,
     position: 'bottom',
@@ -67,7 +67,7 @@ const ChartThree: React.FC = () => {
       <div className="mb-3 justify-between gap-4 sm:flex">
         <div>
           <h5 className="text-xl font-semibold text-black dark:text-white">
-            Jumlah Pasien Per Quarter
+            Jumlah Pasien Per Tahun
           </h5>
         </div>
       </div>
@@ -87,7 +87,7 @@ const ChartThree: React.FC = () => {
           <div className="flex w-full items-center">
             <span className="mr-2 block h-3 w-full max-w-3 rounded-full bg-primary"></span>
             <p className="flex w-full justify-between text-sm font-medium text-black dark:text-white">
-              <span> Q1 </span>
+              <span> T1 </span>
               <span> 65% </span>
             </p>
           </div>
@@ -96,7 +96,7 @@ const ChartThree: React.FC = () => {
           <div className="flex w-full items-center">
             <span className="mr-2 block h-3 w-full max-w-3 rounded-full bg-[#6577F3]"></span>
             <p className="flex w-full justify-between text-sm font-medium text-black dark:text-white">
-              <span> Q2 </span>
+              <span> T2 </span>
               <span> 34% </span>
             </p>
           </div>
@@ -105,7 +105,7 @@ const ChartThree: React.FC = () => {
           <div className="flex w-full items-center">
             <span className="mr-2 block h-3 w-full max-w-3 rounded-full bg-[#8FD0EF]"></span>
             <p className="flex w-full justify-between text-sm font-medium text-black dark:text-white">
-              <span> Q3 </span>
+              <span> T3 </span>
               <span> 45% </span>
             </p>
           </div>
@@ -114,7 +114,7 @@ const ChartThree: React.FC = () => {
           <div className="flex w-full items-center">
             <span className="mr-2 block h-3 w-full max-w-3 rounded-full bg-[#0FADCF]"></span>
             <p className="flex w-full justify-between text-sm font-medium text-black dark:text-white">
-              <span> Q4 </span>
+              <span> T4 </span>
               <span> 12% </span>
             </p>
           </div>

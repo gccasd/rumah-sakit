@@ -91,45 +91,45 @@ export default function Keuangan({ auth }: PageProps) {
 
             {/* Baris ketiga */}
             <div className="flex w-full space-x-4 mb-5">
-              <div className="flex-grow bg-white dark:bg-boxdark px-8 py-10 rounded-sm">
+              <div className="flex-grow bg-white dark:bg-boxdark px-6 py-6 rounded-sm">
                 <p className="text-xl text-black mb-14 dark:text-white">
                   {rupiahFormat(4000000)}
                 </p>
-                <p className="text-md text-black font-bold dark:text-gray-2 mb-2">
+                <p className="text-md text-black font-bold dark:text-gray-2 mb-5">
                   Pasien Rawat Jalan
                 </p>
                 <p className="text-lg text-center font-medium py-2 text-black dark:text-white bg-cyan-300 dark:bg-boxdark-2">
                   MARET 2024
                 </p>
               </div>
-              <div className="flex-grow bg-white dark:bg-boxdark px-8 py-10 rounded-sm">
+              <div className="flex-grow bg-white dark:bg-boxdark px-6 py-6 rounded-sm">
                 <p className="text-xl text-black mb-14 dark:text-white">
-                  {rupiahFormat(4000000)}
+                  {rupiahFormat(1000000)}
                 </p>
-                <p className="text-md text-black font-bold dark:text-gray-2 mb-2">
-                  Pasien Rawat Jalan
+                <p className="text-md text-black font-bold dark:text-gray-2 mb-5">
+                  Pembelian Obat
                 </p>
                 <p className="text-lg text-center font-medium py-2 text-black dark:text-white bg-cyan-300 dark:bg-boxdark-2">
                   MARET 2024
                 </p>
               </div>
-              <div className="flex-grow bg-white dark:bg-boxdark px-8 py-10 rounded-sm">
+              <div className="flex-grow bg-white dark:bg-boxdark px-6 py-6 rounded-sm">
                 <p className="text-xl text-black mb-14 dark:text-white">
-                  {rupiahFormat(4000000)}
+                  {rupiahFormat(1000000)}
                 </p>
-                <p className="text-md text-black font-bold dark:text-gray-2 mb-2">
-                  Pasien Rawat Jalan
+                <p className="text-md text-black font-bold dark:text-gray-2 mb-5">
+                  Penjualan Obat
                 </p>
                 <p className="text-lg text-center font-medium py-2 text-black dark:text-white bg-cyan-300 dark:bg-boxdark-2">
                   MARET 2024
                 </p>
               </div>
-              <div className="flex-grow bg-white dark:bg-boxdark px-8 py-10 rounded-sm">
+              <div className="flex-grow bg-white dark:bg-boxdark px-6 py-6 rounded-sm">
                 <p className="text-xl text-black mb-14 dark:text-white">
-                  {rupiahFormat(4000000)}
+                  {rupiahFormat(3000000)}
                 </p>
-                <p className="text-md text-black font-bold dark:text-gray-2 mb-2">
-                  Pasien Rawat Jalan
+                <p className="text-md text-black font-bold dark:text-gray-2 mb-5">
+                  Pasien Rawat Inap
                 </p>
                 <p className="text-lg text-center font-medium py-2 text-black dark:text-white bg-cyan-300 dark:bg-boxdark-2">
                   MARET 2024

@@ -53,9 +53,11 @@ class OrderPemeriksaanController extends Controller
         $no_rm = $request->query('no_rm');
         $jenisPemeriksaan = JenisPemeriksaan::where('active', 'active')->get();
 
-        if ($no_rm) {
+
+        if ($no_rm) {        
             $pasien = Pasien::where('no_rm', 'like', "%{$no_rm}%")->take(6)->get();
             return Inertia::render('Pemeriksaan/OrderPemeriksaan', [
+                'jenisPemeriksaan' => $jenisPemeriksaan,
                 'pasien' => $pasien,
                 'status' => session('status'),
             ]);

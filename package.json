@@ -30,6 +30,8 @@
         "@fortawesome/free-solid-svg-icons": "^6.5.2",
         "@fortawesome/react-fontawesome": "^0.2.2",
         "apexcharts": "^3.49.1",
-        "react-apexcharts": "^1.4.1"
+        "react-apexcharts": "^1.4.1",
+        "react-simple-wysiwyg": "^3.0.2",
+        "react-to-print": "^2.15.1"
     }
 }

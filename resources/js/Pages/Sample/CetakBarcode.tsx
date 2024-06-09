@@ -1,19 +1,10 @@
 import AuthenticatedLayout from "../../Layouts/AuthenticatedLayout";
 import { Head, Link, router, useForm, usePage } from "@inertiajs/react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { PageProps } from "@/types";
-import { faPencil } from "@fortawesome/free-solid-svg-icons/faPencil";
-import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import {
   ChangeEvent,
-  EventHandler,
-  FormEventHandler,
-  useEffect,
   useState,
 } from "react";
-import Modal from "@/Components/Modal";
-import SecondaryButton from "@/Components/SecondaryButton";
-import DangerButton from "@/Components/DangerButton";
 import TextInput from "@/Components/TextInput";
 import TextInputSelect from "@/Components/TextInputSelect";
 import { Pagination } from "@/Components/Pagination";

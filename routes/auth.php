@@ -78,6 +78,9 @@ Route::middleware('auth')->group(function () {
         Route::get('hasil-pemeriksaan', [HasilPemeriksaanController::class, 'index'])
                 ->name('hasil-pemeriksaan');
 
+        Route::get('hasil-pemeriksaan/{id}', [HasilPemeriksaanController::class, 'edit'])
+                ->name('hasil-pemeriksaan-edit');
+
         Route::get('hasil-pemeriksaan-validasi', [HasilPemeriksaanController::class, 'validasi'])
                 ->name('hasil-pemeriksaan-validasi');
 

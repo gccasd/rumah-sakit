@@ -55,8 +55,12 @@ class HasilPemeriksaanController extends Controller
         ]);
     }
 
-    public function cetak()
+    public function edit($id)
     {
-
+        $pemeriksaan = OrderPemeriksaan::with(['pasien'])->where('id', $id)->get();
+        return Inertia::render('HasilLab/HasilLab', [
+            'pemeriksaan1' => $pemeriksaan,
+            'status' => session('status'),
+        ]);
     }
 }

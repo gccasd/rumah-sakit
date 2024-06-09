@@ -8,7 +8,6 @@ export const debounce = (func: Function, delay: number) => {
 
 export const isPageNumber = (url: string, pattern: string) => {
     const regx = new RegExp('^'+pattern + "\\/\\d+$");
-    console.log(regx.test(url))
     if (regx.test(url)) return true;
     return false;
 }

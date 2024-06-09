@@ -1,13 +1,6 @@
 import AuthenticatedLayout from "../../Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
 import { PageProps } from "@/types";
-import { rupiahFormat, toDate } from "@/types/helper";
-import ChartOne from "@/Components/Charts/ChartOne";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserGroup } from "@fortawesome/free-solid-svg-icons";
-import { faLocationPin } from "@fortawesome/free-solid-svg-icons/faLocationPin";
-import { faStethoscope } from "@fortawesome/free-solid-svg-icons/faStethoscope";
-import { faMoneyBill1 } from "@fortawesome/free-solid-svg-icons/faMoneyBill1";
 import ChartThree from "@/Components/Charts/ChartThree";
 import ChartTwo from "@/Components/Charts/ChartTwo";
 
@@ -17,23 +10,23 @@ export default function RawatJalan({ auth }: PageProps) {
       user={auth.user}
       header={
         <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-          Rawat Jalan
+          Jumlah Pasien
         </h2>
       }
     >
-      <Head title="Rawat Jalan" />
+      <Head title="Jumlah Pasien" />
 
       <div className="">
         <div className="mx-auto sm:px-6 lg:px-8 ">
           <div className="my-8">
             <h2 className="text-2xl text-black dark:text-white">LAPORAN</h2>
             <h3 className="text-xl font-light text-black dark:text-white">
-              Rawat Jalan
+              Jumlah Pasien
             </h3>
           </div>
           <div className="bg-cyan-800 px-4 py-4">
             <h3 className="text-2xl font-medium text-white">
-              RAWAT JALAN
+              JUMLAH PASIEN
             </h3>
           </div>
           <div className="mx-auto bg-cyan-600 px-4 py-4 ">
