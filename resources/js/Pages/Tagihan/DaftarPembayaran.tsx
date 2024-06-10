@@ -1,6 +1,6 @@
 import AuthenticatedLayout from "../../Layouts/AuthenticatedLayout";
 import { Head, router, usePage } from "@inertiajs/react";
-import { PageProps } from "@/types";
+import { PageProps, Pasien, Pemeriksaan } from "@/types";
 import {
   ChangeEvent,
   MutableRefObject,
@@ -22,21 +22,27 @@ export default function DaftarPembayaran({
 }: PageProps) {
   const { url } = usePage<any>();
   const [isPrinting, setIsPrinting] = useState(false);
+  const [dataPrint, setDataPrint] = useState<Pemeriksaan>();
   const printRef = useRef<HTMLDivElement>(null);
   const promiseResolveRef = useRef<(() => void) | null>(null);
-  
+
   useEffect(() => {
     if (isPrinting && promiseResolveRef.current) {
       promiseResolveRef.current();
     }
   }, [isPrinting]);
 
-  const handlePrint = useReactToPrint({
+  const handlePrint = (data: Pemeriksaan, e: any) => {
+    setDataPrint(data);
+    handlePrintProcess(e);
+  };
+
+  const handlePrintProcess = useReactToPrint({
     content: () => printRef.current,
     onBeforeGetContent: () => {
       return new Promise<void>((resolve) => {
         promiseResolveRef.current = resolve;
-        console.log(resolve)
+        console.log(resolve);
         setIsPrinting(true);
       });
     },
@@ -193,7 +199,12 @@ export default function DaftarPembayaran({
                             <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                               <div className="flex items-center space-x-3.5">
                                 {/* Tombol print */}
-                                <button className="bg-red-300 px-5 py-1/2 text-white" onClick={handlePrint}>Print</button>
+                                <button
+                                  className="bg-red-300 px-5 py-1/2 text-white"
+                                  onClick={(e) => handlePrint(dataItem, e)}
+                                >
+                                  Print
+                                </button>
                                 <div>
                                   {/* Wrap ComponentToPrint in a div with display: none */}
                                   <div
@@ -202,11 +213,13 @@ export default function DaftarPembayaran({
                                     }}
                                     className="absolute top-0 left-0 z-0"
                                   >
-                                    <CetakDaftarPembayaran
-                                      ref={printRef}
-                                      data={dataItem}
-                                      className={""}
-                                    />
+                                    {dataPrint !== undefined ? (
+                                      <CetakDaftarPembayaran
+                                        ref={printRef}
+                                        data={dataPrint}
+                                        className={""}
+                                      />
+                                    ) : null}
                                   </div>
                                 </div>
                               </div>

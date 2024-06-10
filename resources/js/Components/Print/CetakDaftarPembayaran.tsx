@@ -3,11 +3,11 @@ import { Pemeriksaan } from "@/types";
 import { rupiahFormat } from '@/types/helper';
 
 interface Props {
-    data: Pemeriksaan,
+    data?: Pemeriksaan | undefined,
     className: string,
 }
 
-const CetakDaftarPembayaran = React.forwardRef<HTMLDivElement, Props>(({ data, className = ''}, ref) => {
+const CetakDaftarPembayaran = React.forwardRef<HTMLDivElement, Props>(({ data?, className = ''}, ref) => {
   return (
     <div ref={ref}>
       <div
@@ -20,24 +20,28 @@ const CetakDaftarPembayaran = React.forwardRef<HTMLDivElement, Props>(({ data, c
           </div>
           <div className="border border-solid border-black p-10 mb-20">
             <div className="flex justify-between mb-5">
-              <span className="font-bold">Nomor Invoice:</span>
-              <span>{data.no_rm}</span>
+              <span className="font-bold">Nomor RM:</span>
+              <span>{data?.no_rm}</span>
+            </div>
+            <div className="flex justify-between mb-5">
+              <span className="font-bold">Nama Pasien:</span>
+              <span>{data?.pasien.nama_pasien}</span>
             </div>
             <div className="flex justify-between mb-5">
               <span className="font-bold">Asuransi:</span>
-              <span>{data.jaminan || '-'}</span>
+              <span>{data?.jaminan || '-'}</span>
             </div>
             <div className="flex justify-between mb-5">
               <span className="font-bold">Dokter Penanggung Jawab:</span>
-              <span>{data.dokter_penanggung_jawab}</span>
+              <span>{data?.dokter_penanggung_jawab}</span>
             </div>
             <div className="flex justify-between mb-5">
               <span className="font-bold">Total Pembayaran:</span>
-              <span>{rupiahFormat(data.total_pembayaran) || '-'}</span>
+              <span>{rupiahFormat(data?.total_pembayaran) || '-'}</span>
             </div>
             <div className="flex justify-between">
               <span className="font-bold">Metode Pembayaran:</span>
-              <span>{data.metode_pembayaran || '-'}</span>
+              <span>{data?.metode_pembayaran || '-'}</span>
             </div>
           </div>
           <p className="text-center text-lg">Terima kasih atas kunjungan Anda!</p>
