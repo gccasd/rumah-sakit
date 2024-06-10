@@ -33,7 +33,7 @@ export default function Dashboard({ auth }: PageProps) {
                     {toDate(Date.now())}
                   </p>
                   <p className="text-3xl font-extrabold text-white">
-                    {rupiahFormat(73000000)}
+                    {rupiahFormat(70000000)}
                   </p>
                 </div>
               </div>

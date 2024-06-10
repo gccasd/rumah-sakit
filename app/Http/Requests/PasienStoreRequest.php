@@ -21,7 +21,7 @@ class PasienStoreRequest extends FormRequest
             'nama_pasien' => 'required',
             'tanggal_lahir' => 'required|date',
             'jenis_kelamin' => 'required|in:LK,PM',
-            'status_pasien' => 'required',
+            'status_pasien' => '',
             'no_bpjs' => 'required',
             'alamat' => 'required',
             'no_kontak' => 'required',

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('tanggal_lahir');
             $table->string('tempat_lahir')->nullable();
             $table->enum('jenis_kelamin', ['LK', 'PM']);
-            $table->string('status_pasien');
+            $table->string('status_pasien')->nullable();
             $table->string('no_bpjs');
             $table->string('alamat');
             $table->string('no_kontak');
